@@ -1,0 +1,10 @@
+2023-04-21 14:49:19 INFO     uvicorn.error   Will watch for changes in these directories: ['/vecspace']
+2023-04-21 14:49:19 INFO     uvicorn.error   Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2023-04-21 14:49:19 INFO     uvicorn.error   Started reloader process [1] using WatchFiles
+2023-04-21 14:49:20 INFO     vecspace.telemetry.posthog Anonymized telemetry enabled. See https://docs.tryvecspace.com/telemetry for more information.
+2023-04-21 14:49:20 INFO     vecspace        Running VecSpace using direct local API.
+2023-04-21 14:49:20 INFO     vecspace        Using Clickhouse for database
+2023-04-21 14:49:20 INFO     uvicorn.error   Started server process [8]
+2023-04-21 14:49:20 INFO     uvicorn.error   Waiting for application startup.
+2023-04-21 14:49:20 INFO     uvicorn.error   Application startup complete.
+2023-04-21 14:50:51 INFO     uvicorn.access  172.18.0.1:35178 - "GET /api/v1 HTTP/1.1" 200

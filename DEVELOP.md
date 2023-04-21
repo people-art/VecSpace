@@ -66,8 +66,22 @@ To manually build a distribution, run `python -m build`.
 The project's source and wheel distributions will be placed in the `dist` directory.
 
 ## Manual Release
+Using `flit` to build and publish package to [pypi.org](https://pypi.org).
 
-Not yet implemented.
+Edit `pyproject.toml` project files.
+Edit `.pypirc` login files.
+```bash
+$ sudo nano ~/.pypirc
+```
+Build&Publish
+
+```bash
+$ flit build
+$ flit publish
+```
+
+
+
 
 ## Versioning
 
