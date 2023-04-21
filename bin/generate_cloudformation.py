@@ -24,8 +24,8 @@ with open(f"{path}/templates/docker-compose.yml") as f:
 with open(f"{path}/../config/backup_disk.xml") as f:
     backup_disk_config = str(f.read())
 
-with open(f"{path}/../config/chroma_users.xml") as f:
-    chroma_users_config = str(f.read())
+with open(f"{path}/../config/vecspace_users.xml") as f:
+    vecspace_users_config = str(f.read())
 
 
 cloud_config_script = f"""
@@ -54,8 +54,8 @@ cat << EOF > /home/ec2-user/config/backup_disk.xml
 {backup_disk_config}
 EOF
 
-cat << EOF > /home/ec2-user/config/chroma_users.xml
-{chroma_users_config}
+cat << EOF > /home/ec2-user/config/vecspace_users.xml
+{vecspace_users_config}
 EOF
 
 docker-compose -f /home/ec2-user/docker-compose.yml up -d
@@ -97,7 +97,7 @@ cf = {
             "Type": "String",
             "Default": "t3.small",
         },
-        "ChromaVersion": {
+        "VecSpaceVersion": {
             "Description": "VecSpace version to install",
             "Type": "String",
             "Default": version,
@@ -107,13 +107,13 @@ cf = {
         "HasKeyName": {"Fn::Not": [{"Fn::Equals": [{"Ref": "KeyName"}, ""]}]},
     },
     "Resources": {
-        "ChromaInstance": {
+        "VecSpaceInstance": {
             "Type": "AWS::EC2::Instance",
             "Properties": {
                 "ImageId": {"Fn::FindInMap": ["Region2AMI", {"Ref": "AWS::Region"}, "AMI"]},
                 "InstanceType": {"Ref": "InstanceType"},
                 "UserData": b64text(userdata),
-                "SecurityGroupIds": [{"Ref": "ChromaInstanceSecurityGroup"}],
+                "SecurityGroupIds": [{"Ref": "VecSpaceInstanceSecurityGroup"}],
                 "KeyName": {"Fn::If": ["HasKeyName", {"Ref": "KeyName"}, {"Ref": "AWS::NoValue"}]},
                 "BlockDeviceMappings": [
                     {
@@ -125,7 +125,7 @@ cf = {
                 ],
             },
         },
-        "ChromaInstanceSecurityGroup": {
+        "VecSpaceInstanceSecurityGroup": {
             "Type": "AWS::EC2::SecurityGroup",
             "Properties": {
                 "GroupDescription": "VecSpace Instance Security Group",
@@ -144,7 +144,7 @@ cf = {
     "Outputs": {
         "ServerIp": {
             "Description": "IP address of the VecSpace server",
-            "Value": {"Fn::GetAtt": ["ChromaInstance", "PublicIp"]},
+            "Value": {"Fn::GetAtt": ["VecSpaceInstance", "PublicIp"]},
         }
     },
     "Mappings": {"Region2AMI": {}},
@@ -174,14 +174,14 @@ json.dump(cf, open("/tmp/vecspace.cf.json", "w"), indent=4)
 # upload to S3
 s3 = boto3.client("s3", region_name="us-east-1")
 s3.upload_file(
-    "/tmp/vecspace.cf.json", "public.trychroma.com", f"cloudformation/{version}/vecspace.cf.json"
+    "/tmp/vecspace.cf.json", "public.tryvecspace.com", f"cloudformation/{version}/vecspace.cf.json"
 )
 
 # Upload to s3 under /latest version only if this is a release
 pattern = re.compile(r"^\d+\.\d+\.\d+$")
 if pattern.match(version):
     s3.upload_file(
-        "/tmp/vecspace.cf.json", "public.trychroma.com", "cloudformation/latest/vecspace.cf.json"
+        "/tmp/vecspace.cf.json", "public.tryvecspace.com", "cloudformation/latest/vecspace.cf.json"
     )
 else:
     print(f"Version {version} is not a 3-part semver, not uploading to /latest")

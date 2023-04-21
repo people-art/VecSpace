@@ -35,7 +35,7 @@ services:
       - ./clickhouse_data:/bitnami/clickhouse
       - ./backups:/backups
       - ./config/backup_disk.xml:/etc/clickhouse-server/config.d/backup_disk.xml
-      - ./config/chroma_users.xml:/etc/clickhouse-server/users.d/vecspace.xml
+      - ./config/vecspace_users.xml:/etc/clickhouse-server/users.d/vecspace.xml
     environment:
       - ALLOW_EMPTY_PASSWORD=yes
       - CLICKHOUSE_TCP_PORT=9000
@@ -63,7 +63,7 @@ cat << EOF > config/backup_disk.xml
 </clickhouse>
 EOF
 
-cat << EOF > config/chroma_users.xml
+cat << EOF > config/vecspace_users.xml
 <clickhouse>
     <profiles>
         <default>

@@ -349,7 +349,7 @@ export class Collection {
 
 }
 
-export class ChromaClient {
+export class VecSpaceClient {
   private api: DefaultApi;
 
   constructor(basePath?: string) {

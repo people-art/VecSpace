@@ -10,7 +10,7 @@ var openai = require('openai');
 
 var app = express();
 app.get('/', async (req, res) => {
-  const cc = new vecspace.ChromaClient("http://localhost:8000");
+  const cc = new vecspace.VecSpaceClient("http://localhost:8000");
   await cc.reset()
 
   // const openAIembedder = new vecspace.OpenAIEmbeddingFunction("key")

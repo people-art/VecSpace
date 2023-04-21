@@ -1,10 +1,10 @@
 import { expect, test } from '@jest/globals';
-import { ChromaClient } from '../src/index'
+import { VecSpaceClient } from '../src/index'
 import vecspace from './initClient'
 
 test('it should create the client connection', async () => {
     expect(vecspace).toBeDefined()
-    expect(vecspace).toBeInstanceOf(ChromaClient)
+    expect(vecspace).toBeInstanceOf(VecSpaceClient)
 })
 
 test('it should get the version', async () => {

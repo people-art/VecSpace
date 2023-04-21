@@ -10,7 +10,7 @@ if USE_LOCAL:
 else:
     client = vecspace.Client(
         Settings(
-            chroma_api_impl="rest", chroma_server_host="localhost", chroma_server_http_port="8000"
+            vecspace_api_impl="rest", vecspace_server_host="localhost", vecspace_server_http_port="8000"
         )
     )
 # print(client)

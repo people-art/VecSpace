@@ -61,7 +61,7 @@ class FastAPI(vecspace.server.Server):
         self._app.add_middleware(
             CORSMiddleware,
             allow_headers=["*"],
-            allow_origins=settings.chroma_server_cors_allow_origins,
+            allow_origins=settings.vecspace_server_cors_allow_origins,
             allow_methods=["*"],
         )
 

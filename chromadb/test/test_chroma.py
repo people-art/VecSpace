@@ -46,10 +46,10 @@ class GetAPITest(unittest.TestCase):
     def test_fastapi(self, mock):
         vecspace.Client(
             vecspace.config.Settings(
-                chroma_api_impl="rest",
+                vecspace_api_impl="rest",
                 persist_directory="./foo",
-                chroma_server_host="foo",
-                chroma_server_http_port="80",
+                vecspace_server_host="foo",
+                vecspace_server_http_port="80",
             )
         )
         assert mock.called

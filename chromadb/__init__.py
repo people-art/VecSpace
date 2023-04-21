@@ -60,18 +60,18 @@ def Client(settings=__settings):
     """Return a vecspace.API instance based on the provided or environmental
     settings, optionally overriding the DB instance."""
 
-    setting = settings.chroma_api_impl.lower()
+    setting = settings.vecspace_api_impl.lower()
     telemetry_client = Posthog(settings)
 
     # Submit event for client start
     telemetry_client.capture(ClientStartEvent())
 
     def require(key):
-        assert settings[key], f"Setting '{key}' is required when chroma_api_impl={setting}"
+        assert settings[key], f"Setting '{key}' is required when vecspace_api_impl={setting}"
 
     if setting == "rest":
-        require("chroma_server_host")
-        require("chroma_server_http_port")
+        require("vecspace_server_host")
+        require("vecspace_server_http_port")
         logger.info("Running VecSpace in client mode using REST to connect to remote server")
         import vecspace.api.fastapi
 
@@ -82,4 +82,4 @@ def Client(settings=__settings):
 
         return vecspace.api.local.LocalAPI(settings, get_db(settings), telemetry_client)
     else:
-        raise ValueError(f"Expected chroma_api_impl to be one of rest, local, got {setting}")
+        raise ValueError(f"Expected vecspace_api_impl to be one of rest, local, got {setting}")

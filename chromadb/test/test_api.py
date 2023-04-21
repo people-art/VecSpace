@@ -17,7 +17,7 @@ import numpy as np
 def local_api():
     return vecspace.Client(
         Settings(
-            chroma_api_impl="local",
+            vecspace_api_impl="local",
             vecspace_impl="duckdb",
             persist_directory=tempfile.gettempdir(),
         )
@@ -28,7 +28,7 @@ def local_api():
 def local_persist_api():
     return vecspace.Client(
         Settings(
-            chroma_api_impl="local",
+            vecspace_api_impl="local",
             vecspace_impl="duckdb+parquet",
             persist_directory=tempfile.gettempdir() + "/test_server",
         )
@@ -40,7 +40,7 @@ def local_persist_api():
 def local_persist_api_cache_bust():
     return vecspace.Client(
         Settings(
-            chroma_api_impl="local",
+            vecspace_api_impl="local",
             vecspace_impl="duckdb+parquet",
             persist_directory=tempfile.gettempdir() + "/test_server",
         )
@@ -55,7 +55,7 @@ def fastapi_integration_api():
 def _build_fastapi_api():
     return vecspace.Client(
         Settings(
-            chroma_api_impl="rest", chroma_server_host="localhost", chroma_server_http_port="6666"
+            vecspace_api_impl="rest", vecspace_server_host="localhost", vecspace_server_http_port="6666"
         )
     )
 
@@ -67,7 +67,7 @@ def fastapi_api():
 
 def run_server():
     settings = Settings(
-        chroma_api_impl="local",
+        vecspace_api_impl="local",
         vecspace_impl="duckdb",
         persist_directory=tempfile.gettempdir() + "/test_server",
     )

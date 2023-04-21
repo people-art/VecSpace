@@ -6,7 +6,7 @@ networks:
 
 services:
   server:
-    image: ghcr.io/vecspace-core/vecspace:${ChromaVersion}
+    image: ghcr.io/vecspace-core/vecspace:${VecSpaceVersion}
     volumes:
       - index_data:/index_data
     environment:
@@ -33,7 +33,7 @@ services:
       - clickhouse_data:/bitnami/clickhouse
       - backups:/backups
       - ./config/backup_disk.xml:/etc/clickhouse-server/config.d/backup_disk.xml
-      - ./config/chroma_users.xml:/etc/clickhouse-server/users.d/vecspace.xml
+      - ./config/vecspace_users.xml:/etc/clickhouse-server/users.d/vecspace.xml
     networks:
       - net
 

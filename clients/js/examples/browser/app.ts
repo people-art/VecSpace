@@ -1,8 +1,8 @@
 // import env.ts
-import { ChromaClient } from "../../src/index"
+import { VecSpaceClient } from "../../src/index"
 
 window.onload = async () => {
-  const vecspace = new ChromaClient("http://localhost:8000");
+  const vecspace = new VecSpaceClient("http://localhost:8000");
   await vecspace.reset()
 
   const collection = await vecspace.createCollection("test-from-js");

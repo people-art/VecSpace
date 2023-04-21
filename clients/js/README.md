@@ -7,20 +7,20 @@ This package gives you a JS/TS interface to talk to a backend VecSpace DB over R
 [Learn more about VecSpace](https://github.com/vecspace-core/vecspace)
 
 - [💬 Community Discord](https://discord.gg/MMeYNTmh3x)
-- [📖 Documentation](https://docs.trychroma.com/)
+- [📖 Documentation](https://docs.tryvecspace.com/)
 - [💡 Colab Example](https://colab.research.google.com/drive/1QEzFyqnoFxq7LUGyP1vzR4iLt9PpCDXv?usp=sharing)
-- [🏠 Homepage](https://www.trychroma.com/)
+- [🏠 Homepage](https://www.tryvecspace.com/)
 
 ## Getting started
 
-VecSpace needs to be running in order for this client to talk to it. Please see the [🧪 Usage Guide](https://docs.trychroma.com/usage-guide) to learn how to quickly stand this up. 
+VecSpace needs to be running in order for this client to talk to it. Please see the [🧪 Usage Guide](https://docs.tryvecspace.com/usage-guide) to learn how to quickly stand this up. 
 
 ## Small example
 
 
 ```js
-import { ChromaClient } from "vecspace"
-const vecspace = new ChromaClient("http://localhost:8000");
+import { VecSpaceClient } from "vecspace"
+const vecspace = new VecSpaceClient("http://localhost:8000");
 const collection = await vecspace.createCollection("test-from-js");
 for (let i = 0; i < 20; i++) {
     await collection.add(

@@ -1,4 +1,4 @@
-resource "google_compute_instance" "chroma1" {
+resource "google_compute_instance" "vecspace1" {
   project      = var.project_id
   name         = "vecspace-1"
   machine_type = var.machine_type

@@ -13,7 +13,7 @@ class Posthog(Telemetry):
             posthog.disabled = True
         else:
             logger.info(
-                "Anonymized telemetry enabled. See https://docs.trychroma.com/telemetry for more information."
+                "Anonymized telemetry enabled. See https://docs.tryvecspace.com/telemetry for more information."
             )
 
         posthog.project_api_key = "phc_YeUxaojbKk5KPi8hNlx1bBKHzuZ4FDtl67kH1blv8Bh"
@@ -24,7 +24,7 @@ class Posthog(Telemetry):
     def capture(self, event: TelemetryEvent):
         try:
             posthog.capture(
-                self.user_id, event.name, {**(event.properties), "chroma_context": self.context}
+                self.user_id, event.name, {**(event.properties), "vecspace_context": self.context}
             )
         except Exception as e:
             logger.error(f"Failed to send telemetry event {event.name}: {e}")

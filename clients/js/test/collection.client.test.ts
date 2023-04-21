@@ -1,5 +1,5 @@
 import { expect, test } from '@jest/globals';
-import { ChromaClient } from '../src/index'
+import { VecSpaceClient } from '../src/index'
 import vecspace from './initClient'
 
 test('it should list collections', async () => {

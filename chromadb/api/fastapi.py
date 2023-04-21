@@ -19,8 +19,8 @@ from vecspace.telemetry import Telemetry
 
 class FastAPI(API):
     def __init__(self, settings, telemetry_client: Telemetry):
-        url_prefix = "https" if settings.chroma_server_ssl_enabled else "http"
-        self._api_url = f"{url_prefix}://{settings.chroma_server_host}:{settings.chroma_server_http_port}/api/v1"
+        url_prefix = "https" if settings.vecspace_server_ssl_enabled else "http"
+        self._api_url = f"{url_prefix}://{settings.vecspace_server_host}:{settings.vecspace_server_http_port}/api/v1"
         self._telemetry_client = telemetry_client
 
     def heartbeat(self):

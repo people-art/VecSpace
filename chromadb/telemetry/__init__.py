@@ -71,14 +71,14 @@ class Telemetry:
 
     @property
     def context(self) -> dict:
-        chroma_version = vecspace.__version__
+        vecspace_version = vecspace.__version__
         settings = vecspace.get_settings()
         telemetry_settings = {}
         for whitelisted in TELEMETRY_WHITELISTED_SETTINGS:
             telemetry_settings[whitelisted] = settings[whitelisted]
 
         self._context = {
-            "chroma_version": chroma_version,
+            "vecspace_version": vecspace_version,
             "server_context": self.SERVER_CONTEXT.value,
             **telemetry_settings,
         }
